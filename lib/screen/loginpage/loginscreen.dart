@@ -12,7 +12,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-
         body: Container(
           alignment: Alignment.center,
           padding: EdgeInsets.all(10),
