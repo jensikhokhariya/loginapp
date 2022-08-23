@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loginapp/screen/providerpage/lrprovider.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -8,6 +10,25 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController e1 = TextEditingController();
+  TextEditingController p1 = TextEditingController();
+  bool login= false;
+  @override
+  void initState() {
+    super.initState();
+    login = Provider.of<LRProvider>(context,listen: false).cheakUser();
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+void isLogin(){
+    if(login){
+      Navigator.pushReplacementNamed(context, 'page2');
+    }
+}
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,27 +42,46 @@ class _LoginScreenState extends State<LoginScreen> {
               Text(
                 "Login",
                 style: TextStyle(
-                  fontSize: 25,color: Colors.blue,
+                  fontSize: 25,
+                  color: Colors.blue,
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               TextField(
+                controller: e1,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text("Email"),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
+                controller: p1,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text("Password"),
                 ),
               ),
-              SizedBox(height: 20,),
-              TextButton(onPressed: (){
-                Navigator.pushNamed(context, 'page1');
-              }, child: Text("create account | Sign in"),),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                child: Text("Login"),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, 'page1');
+                },
+                child: Text("create account | Sign in"),
+              ),
             ],
           ),
         ),

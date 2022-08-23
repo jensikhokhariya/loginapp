@@ -10,8 +10,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  TextEditingController e1= TextEditingController();
-  TextEditingController p1= TextEditingController();
+  TextEditingController e1 = TextEditingController();
+  TextEditingController p1 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,27 +26,50 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Text(
                 "Sign up",
                 style: TextStyle(
-                  fontSize: 25,color: Colors.blue,
+                  fontSize: 25,
+                  color: Colors.blue,
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               TextField(
+                controller: e1,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text("Email"),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
+                controller: p1,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   label: Text("Password"),
                 ),
               ),
-              SizedBox(height: 20,),
-              ElevatedButton(onPressed: (){
-                Provider.of<LRProvider>(context,listen: false).findUser(e1.text, p1.text);
-              }, child: Text("Sign up"),style: ElevatedButton.styleFrom(primary: Colors.blue),),
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  var res = Provider.of<LRProvider>(context, listen: false)
+                      .findUser(e1.text, p1.text);
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$res")));
+
+                  if(res == "Success"){
+                    Navigator.pushReplacementNamed(context, 'page2');
+                  }
+                },
+                child: Text("Sign up"),
+                style: ElevatedButton.styleFrom(primary: Colors.blue),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text("Singup"),
             ],
           ),
         ),
