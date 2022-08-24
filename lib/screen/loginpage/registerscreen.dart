@@ -54,8 +54,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () {
-                  var res = Provider.of<LRProvider>(context, listen: false)
+                onPressed: () async{
+                  var res =await Provider.of<LRProvider>(context, listen: false)
                       .findUser(e1.text, p1.text);
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$res")));
 
@@ -66,10 +66,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Text("Sign up"),
                 style: ElevatedButton.styleFrom(primary: Colors.blue),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Text("Singup"),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LRProvider extends ChangeNotifier {
   Future<String> findUser(String email, String password)async {
@@ -7,8 +8,7 @@ class LRProvider extends ChangeNotifier {
     var firebaseAuth = FirebaseAuth.instance;
 
     try{
-      var res = await firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
+      var res = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
 
       note = "Success";
     }on FirebaseAuthException catch (e){
@@ -16,6 +16,8 @@ class LRProvider extends ChangeNotifier {
         note = "Password is too short";
       }else if(e.code == "email-already-in-use"){
         note = "You are already User";
+      }else{
+        note = "You are already User ${e.message}";
       }
     }
     return note;
@@ -51,5 +53,17 @@ class LRProvider extends ChangeNotifier {
     var firebaseAuth = FirebaseAuth.instance;
     firebaseAuth.signOut();
   }
+  void googleSignIn()async{
+    GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
+    GoogleSignInAuthentication? user = await googleSignInAccount!.authentication;
+
+    var crd = GoogleAuthProvider.credential(
+      idToken: user.idToken,
+      accessToken: user.accessToken
+    );
+    var firebaseAuth = FirebaseAuth.instance;
+    firebaseAuth.signInWithCredential(crd);
+}
+
 
 }
