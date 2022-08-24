@@ -65,5 +65,4 @@ class LRProvider extends ChangeNotifier {
     firebaseAuth.signInWithCredential(crd);
 }
 
-
 }

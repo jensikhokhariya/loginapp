@@ -60,7 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$res")));
 
                   if(res == "Success"){
-                    Navigator.pushReplacementNamed(context, 'page2');
+                    Navigator.pushReplacementNamed(context, 'home');
                   }
                 },
                 child: Text("Sign up"),

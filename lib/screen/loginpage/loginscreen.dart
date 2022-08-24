@@ -13,21 +13,21 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController e1 = TextEditingController();
   TextEditingController p1 = TextEditingController();
   bool login= false;
-  @override
-  void initState() {
-    super.initState();
-    login = Provider.of<LRProvider>(context,listen: false).cheakUser();
-  }
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-void isLogin(){
-    if(login){
-      Navigator.pushReplacementNamed(context, 'page2');
-    }
-}
+//   @override
+//   void initState() {
+//     super.initState();
+//     login = Provider.of<LRProvider>(context,listen: false).cheakUser();
+//   }
+//   @override
+//   void didChangeDependencies() {
+//     super.didChangeDependencies();
+//   }
+//
+// void isLogin(){
+//     if(login){
+//       Navigator.pushReplacementNamed(context, 'home');
+//     }
+// }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ void isLogin(){
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, 'page1');
+                  Navigator.pushNamed(context, 'resgi');
                 },
                 child: Text("create account | Sign in"),
               ),
