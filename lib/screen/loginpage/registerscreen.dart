@@ -57,6 +57,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onPressed: () async{
                   var res =await Provider.of<LRProvider>(context, listen: false)
                       .findUser(e1.text, p1.text);
+
+                  print(res);
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$res")));
 
                   if(res == "Success"){

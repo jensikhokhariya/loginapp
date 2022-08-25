@@ -20,6 +20,7 @@ void main() async {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        initialRoute: 'home',
         routes: {
           '/': (context) => Splash_Screen(),
           'login': (context) => LoginScreen(),
