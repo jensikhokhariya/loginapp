@@ -52,6 +52,7 @@ class LRProvider extends ChangeNotifier {
   void signOut(){
     var firebaseAuth = FirebaseAuth.instance;
     firebaseAuth.signOut();
+    GoogleSignIn().signOut();
   }
   void googleSignIn()async{
     GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();

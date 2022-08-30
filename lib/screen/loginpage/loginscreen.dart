@@ -12,7 +12,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController e1 = TextEditingController();
   TextEditingController p1 = TextEditingController();
-  bool login= false;
+  bool login = false;
+
 //   @override
 //   void initState() {
 //     super.initState();
@@ -70,17 +71,31 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  var res =
+                      await Provider.of<LRProvider>(context, listen: false)
+                          .findUser(e1.text, p1.text);
+
+                  print(res);
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text("$res")));
+
+                  if (res == "Success") {
+                    Navigator.pushReplacementNamed(context, 'home');
+                  }
+                },
                 child: Text("Login"),
               ),
               SizedBox(
                 height: 20,
               ),
               GestureDetector(
-                onTap: (){
-                  Provider.of<LRProvider>(context,listen: false).googleSignIn();
-                },
-                  child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShJvJeICVmrqFtHG1UX9TC8qPMJwuN-K3sUy9JdmHfulwwNg6AfanEyvXV_1I8qvmbRw&usqp=CAU")),
+                  onTap: () {
+                    Provider.of<LRProvider>(context, listen: false)
+                        .googleSignIn();
+                  },
+                  child: Image.network(
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShJvJeICVmrqFtHG1UX9TC8qPMJwuN-K3sUy9JdmHfulwwNg6AfanEyvXV_1I8qvmbRw&usqp=CAU")),
               SizedBox(
                 height: 20,
               ),

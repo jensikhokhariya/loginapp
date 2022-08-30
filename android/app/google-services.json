@@ -1,42 +1,41 @@
 {
   "project_info": {
-    "project_number": "1049853290013",
-    "firebase_url": "https://loginapp-9dbf0-default-rtdb.firebaseio.com",
-    "project_id": "loginapp-9dbf0",
-    "storage_bucket": "loginapp-9dbf0.appspot.com"
+    "project_number": "700494889363",
+    "project_id": "loginapp-ee973",
+    "storage_bucket": "loginapp-ee973.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1049853290013:android:69bf2a54824b5335bf88f4",
+        "mobilesdk_app_id": "1:700494889363:android:8ab8eaaac3d0998477a866",
         "android_client_info": {
-          "package_name": "com.example.register"
+          "package_name": "com.example.loginapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1049853290013-k4eo5nvd0c45cqb0tr3r5rpj6cl85dfa.apps.googleusercontent.com",
+          "client_id": "700494889363-gua1r6sv5tkanh1qvstkhk285ua50p4k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.register",
-            "certificate_hash": "86be6dfc6bce44222cd3b96a461209020b9a3d72"
+            "package_name": "com.example.loginapp",
+            "certificate_hash": "619070e2b1259c6d904642ef0600a32f9e50fbe5"
           }
         },
         {
-          "client_id": "1049853290013-r598ts7c4lo9iia7pgqemh095ncff24o.apps.googleusercontent.com",
+          "client_id": "700494889363-fjfbo39qg3brg3gjfssnkehrmi7vooqk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBmgtXf88dDMTYnFTscPI1ee_pH5xSDzpc"
+          "current_key": "AIzaSyA8TWqb58HvGQJn00veAQmgj9hNhYqcbMU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1049853290013-r598ts7c4lo9iia7pgqemh095ncff24o.apps.googleusercontent.com",
+              "client_id": "700494889363-fjfbo39qg3brg3gjfssnkehrmi7vooqk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
