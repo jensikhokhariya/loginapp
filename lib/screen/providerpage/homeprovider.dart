@@ -26,6 +26,11 @@ class HomeProvider extends ChangeNotifier {
     var dbRef = firebaseDatabase.ref();
     return dbRef.child("Recepi").onValue;
   }
+  Future<void> delete(String key){
+    var firebaseDatabase = FirebaseDatabase.instance;
+    var dbRef = firebaseDatabase.ref();
+    return dbRef.child("Recepi").child(key).remove();
+  }
 }
 class RecipeModel{
   String? cate,desc,title,id,img,key;
