@@ -90,7 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Provider.of<HomeProvider>(context,listen: false).delete(l1[index].key);
+                                  },
                                   icon: Icon(
                                     Icons.delete,
                                     color: Colors.red,
