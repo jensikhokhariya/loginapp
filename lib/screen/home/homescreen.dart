@@ -1,8 +1,12 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:loginapp/screen/providerpage/homeprovider.dart';
 import 'package:loginapp/screen/providerpage/lrprovider.dart';
 import 'package:provider/provider.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,11 +16,32 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  FirebaseMessaging? firebaseMessaging;
   TextEditingController id = TextEditingController();
   TextEditingController title = TextEditingController();
   TextEditingController desc = TextEditingController();
   TextEditingController cate = TextEditingController();
   TextEditingController img = TextEditingController();
+
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  @override
+  void initState() {
+    super.initState();
+    local();
+    firebasenotification();
+
+    AndroidInitializationSettings androidsettings =
+        AndroidInitializationSettings('android');
+
+    IOSInitializationSettings iossettings = IOSInitializationSettings();
+
+    InitializationSettings initializationSettings =
+        InitializationSettings(android: androidsettings, iOS: iossettings);
+
+    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +57,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.pushReplacementNamed(context, '/');
                 },
                 icon: Icon(Icons.logout),
+              ),
+              IconButton(
+                onPressed: () {
+                  // notificationlocal();
+                  notificationschedual();
+                },
+                icon: Icon(Icons.notifications_active),
               ),
             ],
           ),
@@ -64,8 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) {
                       return ListTile(
                           leading: Text("${l1[index].id}"),
-                          title: Text("${l1[index].cate}"),
-                          subtitle: Text("${l1[index].desc}"),
+                          title: Text("${l1[index].title}"),
+                          subtitle: Text("${l1[index].cate}"),
                           trailing: SizedBox(
                             width: 100,
                             child: Row(
@@ -91,7 +123,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 IconButton(
                                   onPressed: () {
-                                    Provider.of<HomeProvider>(context,listen: false).delete(l1[index].key);
+                                    Provider.of<HomeProvider>(context,
+                                            listen: false)
+                                        .delete(l1[index].key);
                                   },
                                   icon: Icon(
                                     Icons.delete,
@@ -202,5 +236,68 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         });
+  }
+  void notificationlocal(String title,String body) async {
+    AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+        "1", "localnotify",
+        importance: Importance.max, priority: Priority.high);
+    IOSNotificationDetails iosNotificationDetails =
+        IOSNotificationDetails(presentSound: false, presentAlert: false);
+    NotificationDetails notificationDetails = NotificationDetails(
+        android: androidDetails, iOS: iosNotificationDetails);
+
+    await flutterLocalNotificationsPlugin.show(
+        1, "Hiii.......", "Local Notification", notificationDetails);
+  }
+  void notificationschedual() async {
+    AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+        "1", "localnotify",
+        importance: Importance.max, priority: Priority.high);
+    IOSNotificationDetails iosNotificationDetails =
+        IOSNotificationDetails(presentSound: false, presentAlert: false);
+    NotificationDetails notificationDetails = NotificationDetails(
+        android: androidDetails, iOS: iosNotificationDetails);
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+        1,
+        "Hiii.......",
+        "Schedual Notification",
+        tz.TZDateTime.now(tz.local).add(Duration(seconds: 3),),
+        notificationDetails,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime,
+        androidAllowWhileIdle: true);
+  }
+  void firebasenotification()async{
+    firebaseMessaging = FirebaseMessaging.instance;
+    NotificationSettings notificationSettings = await firebaseMessaging!.requestPermission(
+      badge: true,
+      alert: true,
+      sound: false,
+      provisional: false
+    );
+    if(notificationSettings.authorizationStatus == AuthorizationStatus.authorized){
+      FirebaseMessaging.onMessage.listen((event) {
+        String title = event.notification!.title.toString();
+        String body= event.notification!.body.toString();
+
+        notificationlocal(title,body);
+
+      });
+    }
+    else{
+      print("No Permission");
+    }
+  }
+  void local(){
+    AndroidInitializationSettings androidsettings =
+    AndroidInitializationSettings('android');
+
+    IOSInitializationSettings iossettings = IOSInitializationSettings();
+
+    InitializationSettings initializationSettings =
+    InitializationSettings(android: androidsettings, iOS: iossettings);
+    tz.initializeTimeZones();
+
+    flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 }
