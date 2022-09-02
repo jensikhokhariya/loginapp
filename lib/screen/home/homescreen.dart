@@ -239,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   void notificationlocal(String title,String body) async {
     AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
-        "1", "localnotify",
+        "$title", "$body",
         importance: Importance.max, priority: Priority.high);
     IOSNotificationDetails iosNotificationDetails =
         IOSNotificationDetails(presentSound: false, presentAlert: false);
