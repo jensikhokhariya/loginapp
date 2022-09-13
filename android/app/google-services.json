@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "700494889363",
+    "firebase_url": "https://loginapp-ee973-default-rtdb.firebaseio.com",
     "project_id": "loginapp-ee973",
     "storage_bucket": "loginapp-ee973.appspot.com"
   },
@@ -18,6 +19,43 @@
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.loginapp",
+            "certificate_hash": "619070e2b1259c6d904642ef0600a32f9e50fbe5"
+          }
+        },
+        {
+          "client_id": "700494889363-fjfbo39qg3brg3gjfssnkehrmi7vooqk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8TWqb58HvGQJn00veAQmgj9hNhYqcbMU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700494889363-fjfbo39qg3brg3gjfssnkehrmi7vooqk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700494889363:android:a7b6a4b801bd228277a866",
+        "android_client_info": {
+          "package_name": "com.recipe.book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700494889363-6daihu8cr8qltl7hj0re90a94lk0ugaq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.recipe.book",
             "certificate_hash": "619070e2b1259c6d904642ef0600a32f9e50fbe5"
           }
         },
